@@ -1,0 +1,45 @@
+---
+# tasks file for elastic-centos
+# https://www.elastic.co/guide/en/beats/elastic/current/setup-repositories.html#_yum
+- name: Print installed product name 
+  debug:
+    msg: "{{elastic_name}}"
+- name: Download and install the public signing key
+  rpm_key:
+    key: https://packages.elastic.co/GPG-KEY-elasticsearch
+  become: "{{elastic_nonroot}}"
+- name: Create a file /etc/yum.repos.d/elastic.repo
+  copy:
+    src: elastic.repo
+    dest: /etc/yum.repos.d/elastic.repo
+  become: "{{elastic_nonroot}}"
+- name: Install Open JDK
+  yum:
+    name: java-1.8.0-openjdk
+    update_cache: yes
+  become: "{{elastic_nonroot}}"
+  when: elastic_name == "logstash" or elastic_name == "elasticsearch"
+- name: Install Elastic Product
+  yum:
+    name: "{{(elastic_version == 'default') | ternary(elastic_name, '{}-{}'.format(elastic_name, elastic_version)) }}"
+    update_cache: yes
+  become: "{{elastic_nonroot}}"
+- name: Create logstash's unit file
+  copy:
+    src: logstash.service
+    dest: /etc/systemd/system/logstash.service
+    force: no
+  become: "{{elastic_nonroot}}"
+  when: elastic_name == "logstash"
+- name: Set elastic product service's state
+  service:
+    name: "{{elastic_name}}"
+    state: "{{elastic_state}}"
+  become: "{{elastic_nonroot}}"
+  when: elastic_state is not undefined
+- name: Set elastic product service's enabled
+  service:
+    name: "{{elastic_name}}"
+    enabled: "{{elastic_enabled}}"
+  become: "{{elastic_nonroot}}"
+  when: elastic_enabled is not undefined

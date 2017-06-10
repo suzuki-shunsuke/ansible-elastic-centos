@@ -1,0 +1,22 @@
+---
+- hosts: default
+  roles:
+  - role: ansible-elastic-centos
+    elastic_name: elasticsearch
+    elastic_enabled: yes
+    elastic_state: started
+    elastic_version: 5.3.0
+  - role: ansible-elastic-centos
+    elastic_name: kibana
+    elastic_enabled: yes
+    elastic_state: started
+    elastic_version: 5.3.0
+  - role: ansible-elastic-centos
+    elastic_name: filebeat
+    elastic_enabled: yes
+    elastic_state: started
+    elastic_version: 5.3.0
+  - role: ansible-elastic-centos
+    elastic_name: logstash
+    elastic_enabled: yes
+    elastic_state: started
