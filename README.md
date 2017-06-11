@@ -21,6 +21,9 @@ Role Variables
 * elastic_state(optional): elastic service state.
 * elastic_version(optional): elastic version.
 * elastic_enabled(optional): whether elastic service is enabled.
+* elastic_java(optional):
+  * "default": java is not installed
+  * yum package name(ex: "java-1.8.0-openjdk"): java is installed by yum
 
 Dependencies
 ------------
@@ -38,6 +41,7 @@ Example Playbook
     elastic_state: started
     elastic_enabled: yes
     elastic_version: 5.4.0
+    elastic_java: java-1.8.0-openjdk
 ```
 
 License

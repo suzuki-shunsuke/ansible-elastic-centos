@@ -1,3 +1,4 @@
 ---
 # defaults file for elastic-centos
 elastic_version: default
+elastic_java: default

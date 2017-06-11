@@ -6,17 +6,21 @@
     elastic_enabled: yes
     elastic_state: started
     elastic_version: 5.3.0
+    elastic_java: java-1.8.0-openjdk
   - role: ansible-elastic-centos
     elastic_name: kibana
     elastic_enabled: yes
     elastic_state: started
     elastic_version: 5.3.0
+    elastic_java: java-1.8.0-openjdk
   - role: ansible-elastic-centos
     elastic_name: filebeat
     elastic_enabled: yes
     elastic_state: started
     elastic_version: 5.3.0
+    elastic_java: java-1.8.0-openjdk
   - role: ansible-elastic-centos
     elastic_name: logstash
     elastic_enabled: yes
     elastic_state: started
+    elastic_java: java-1.8.0-openjdk

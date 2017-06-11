@@ -15,10 +15,10 @@
   become: "{{elastic_nonroot}}"
 - name: Install Open JDK
   yum:
-    name: java-1.8.0-openjdk
+    name: "{{elastic_java}}"
     update_cache: yes
   become: "{{elastic_nonroot}}"
-  when: elastic_name == "logstash" or elastic_name == "elasticsearch"
+  when: elastic_java != "default"
 - name: Install Elastic Product
   yum:
     name: "{{(elastic_version == 'default') | ternary(elastic_name, '{}-{}'.format(elastic_name, elastic_version)) }}"
