@@ -13,7 +13,7 @@
     src: elastic.repo
     dest: /etc/yum.repos.d/elastic.repo
   become: "{{elastic_nonroot}}"
-- name: Install Open JDK
+- name: Install Java
   yum:
     name: "{{elastic_java}}"
     update_cache: yes
