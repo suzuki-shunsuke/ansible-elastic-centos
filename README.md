@@ -4,34 +4,25 @@ ansible role to install Elastic Products on CentOS from official repositories fo
 
 https://galaxy.ansible.com/suzuki-shunsuke/elastic-centos/
 
-Requirements
-------------
+## Requirements
 
 Nothing.
 
-Role Variables
---------------
+## Role Variables
 
-* elastic_name: elastic product's name.
-  * elasticsearch
-  * kibana
-  * logstash
-  * filebeat
-  * etc
-* elastic_state(optional): elastic service state.
-* elastic_version(optional): elastic version.
-* elastic_enabled(optional): whether elastic service is enabled.
-* elastic_java(optional):
-  * "default": java is not installed
-  * yum package name(ex: "java-1.8.0-openjdk"): java is installed by yum
+name | required | default | example | description
+--- | --- | --- | --- | ---
+elastic_name | yes | | kibana | elastic product's name
+elastic_state | no | | started | elastic service state
+elastic_version | no | | 5.3.0 | elastic version
+elastic_enabled | no | | | whether elastic service is enabled
+elastic_java | no | java is not installed | java-1.8.0-openjdk | yum package name to install java
 
-Dependencies
-------------
+## Dependencies
 
 Nothing.
 
-Example Playbook
-----------------
+## Example Playbook
 
 ```yaml
 - hosts: servers
@@ -42,9 +33,9 @@ Example Playbook
     elastic_enabled: yes
     elastic_version: 5.4.0
     elastic_java: java-1.8.0-openjdk
+    become: yes
 ```
 
-License
--------
+## License
 
 [MIT](LICENSE)
